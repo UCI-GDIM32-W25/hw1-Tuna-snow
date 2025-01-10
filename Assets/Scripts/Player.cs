@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private void Start ()
     {
-        
+
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         {
             _playerTransform.Translate(Vector3.left * _speed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             PlantSeed();
         }
@@ -44,8 +44,8 @@ public class Player : MonoBehaviour
     {
         if (_numSeeds > 0)
         {
-            GameObject spawnPlant = Instantiate(_plantPrefab);
-            _numSeedsLeft--;
+            Instantiate(_plantPrefab, transform.position, Quaternion.identity);
+            _numSeedsLeft = _numSeeds -= 1;
             _numSeedsPlanted++;
             _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
         }
